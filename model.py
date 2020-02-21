@@ -2,6 +2,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
 
+
 # This is the connection to the PostgreSQL database; we're getting this through
 # the Flask-SQLAlchemy helper library. On this, we can find the `session`
 # object, where we do most of our interactions (like committing, etc.)
@@ -14,7 +15,6 @@ db = SQLAlchemy()
 
 class User(db.Model):
     """User of ratings website."""
-
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
@@ -23,8 +23,32 @@ class User(db.Model):
     age = db.Column(db.Integer, nullable=True)
     zipcode = db.Column(db.String(15), nullable=True)
 
+    def __repr__(self):
+        """Provide helpful representation when printed."""
 
-# Put your Movie and Rating model classes here.
+        return f"<User user_id={self.user_id} email={self.email}>"
+
+
+class Ratings(db.Model):
+    """Individual rating of movie title. """
+
+    __tablename__ = "ratings"
+
+    rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    movie_id = db.Column(db.Integer, nullable=False)
+    score = db.Column(db.Integer, nullable=False)
+
+
+class Movies(db.Model):
+    """Individual movie title."""
+
+    __tablename__ = "movies"
+
+    movie_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    release_date = db.Column(db.DateTime)
+    imdb = db.Column(db.String(200))
 
 
 ##############################################################################

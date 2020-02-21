@@ -1,0 +1,59 @@
+u.user
+
+user id | age | gender | occupation | zip code
+
+TABLE/CLASS: user
+COLUMN/ATTRIBUTE: user id, age, gender, occupation, zip code
+ROW/INSTANCE: specific user
+
+
+
+
+u.data
+
+user_id \t movie_id \t score \t timestamp
+
+TABLE/CLASS: data (ratings)
+COLUMN/ATTRIBUTE: user_id, movie_id, score, timestamp
+ROW/INSTANCE: specific rating
+
+
+
+
+u.item
+
+movie id | movie title | release date | video release date | 
+IMDb URL | unknown | Action | Adventure | Animation |
+Children's | Comedy | Crime | Documentary | Drama | Fantasy |
+Film-Noir | Horror | Musical | Mystery | Romance | Sci-Fi |
+Thriller | War | Western |
+
+TABLE/CLASS: item (movies)
+COLUMN/ATTRIBUTE: move id, movie title, release date, video release date, IMDB URL, genres
+ROW/INSTANCE: specific movie
+
+
+
+
+
+USER
+
+user_id:    optional
+age:        optional
+zip code:   optional
+email:      primary_key, required
+password:   required
+
+RATINGS
+
+user_id:
+movie_id:
+score:
+timestamp:
+
+MOVIES
+
+movie_id:
+title:
+release_date:
+IMDB:

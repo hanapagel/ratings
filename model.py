@@ -35,10 +35,18 @@ class Ratings(db.Model):
     __tablename__ = "ratings"
 
     rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, nullable=False)
-    movie_id = db.Column(db.Integer, nullable=False)
-    score = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer)
+    movie_id = db.Column(db.Integer)
+    score = db.Column(db.Integer)
 
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return f"""<Rating rating_id={self.rating_id} 
+                   movie_id={self.movie_id} 
+                   user_id={self.user_id} 
+                   score={self.score}>"""
+                   
 
 class Movies(db.Model):
     """Individual movie title."""
@@ -46,10 +54,14 @@ class Movies(db.Model):
     __tablename__ = "movies"
 
     movie_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(100))
     release_date = db.Column(db.DateTime)
     imdb = db.Column(db.String(200))
 
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return f"<Movie movie_id={self.movie_id} title={self.title}>"
 
 ##############################################################################
 # Helper functions

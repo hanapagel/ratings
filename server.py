@@ -38,10 +38,31 @@ def user_list():
 @app.route('/users/<user_id>')
 def user_info(user_id):
     """Display user info."""
+  
+    user = Users.query.get(user_id)
+    rating_list = user.ratings
 
-    
-    
-    return 'hello'
+    return render_template('user_info.html', user=user,
+                           rating_list=rating_list)
+
+
+@app.route('/movies')
+def movies_list():
+    """Show a list of movies alphabetical by title."""
+
+    movies = Movies.query.all()
+    return render_template('movies_list.html', movies=movies)
+
+
+@app.route('/movies/<movie_id>')
+def movie_info(movie_id):
+    """Display movie info."""
+
+    movie = Movies.query.get(movie_id)
+    rating_list = movie.ratings
+
+    return render_template('movie_info.html', movie=movie,
+                           rating_list=rating_list)
 
 
 @app.route('/registration_form')
@@ -101,8 +122,9 @@ def login():
 
         if QUERY.password == user_password:
             session['user_id'] = QUERY.user_id
+            user_id = session['user_id']
             flash('Login successful.')
-            return redirect('/')
+            return redirect(f'/users/{ user_id }')
 
         else:
             flash('Invalid password.')

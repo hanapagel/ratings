@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+  Title: {{ movie.title }}<br>
+  Release Date: {{ movie.release_date }}<br>
+  IMDB: {{ movie.imdb }}<br>
+  Ratings:<br>
+  <table>
+  <tr>
+    <th>User ID</th>
+    <th>Score</th>
+  </tr>
+  {% for rating in rating_list %}
+    <tr>
+      <td>{{ rating.user_id }}</td>
+      <td>{{ rating.score }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

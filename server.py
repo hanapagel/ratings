@@ -39,6 +39,8 @@ def user_list():
 def user_info(user_id):
     """Display user info."""
 
+    
+    
     return 'hello'
 
 

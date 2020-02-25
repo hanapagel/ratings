@@ -35,9 +35,11 @@ class Ratings(db.Model):
     __tablename__ = "ratings"
 
     rating_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer)
-    movie_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    movie_id = db.Column(db.Integer, db.ForeignKey('movies.movie_id'))
     score = db.Column(db.Integer)
+    user = db.relationship('Users', backref='ratings')
+    movie = db.relationship('Movies', backref='ratings')
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -63,8 +65,10 @@ class Movies(db.Model):
 
         return f"<Movie movie_id={self.movie_id} title={self.title}>"
 
+
 ##############################################################################
 # Helper functions
+
 
 def connect_to_db(app):
     """Connect the database to our Flask app."""

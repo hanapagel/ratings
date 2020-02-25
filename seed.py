@@ -38,7 +38,7 @@ def load_users():
 def load_movies():
     """Load movies from u.item into database."""
 
-    print("movies")
+    print("Movies")
 
     Movies.query.delete()
 

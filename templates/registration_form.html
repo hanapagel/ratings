@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Registration</h2>
+
+<form action='/new_user' method='POST'>
+
+    <label for='email'>Enter your email:</label>
+    <input type='text' id='email' name='email'><br>
+
+    <label for='password'>Select a password:</label>
+    <input type='text' id='password' name='password'><br>
+
+    <label for='age'>Enter your age:</label>
+    <input type='text' id='age' name='age'><br>
+
+    <label for='zipcode'>Enter your zipcode:</label>
+    <input type='text' id='zipcode' name='zipcode'><br>
+
+    <input type='submit' value='Create New Account'>
+
+</form>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 """Utility file to seed ratings database from MovieLens data in seed_data/"""
 
 from sqlalchemy import func
-from model import User, Movies, Ratings
+from model import Users, Movies, Ratings
 # from model import Rating
 # from model import Movie
 
@@ -17,16 +17,16 @@ def load_users():
 
     # Delete all rows in table, so if we need to run this a second time,
     # we won't be trying to add duplicate users
-    User.query.delete()
+    Users.query.delete()
 
     # Read u.user file and insert data
     for row in open("seed_data/u.user"):
         row = row.rstrip()
         user_id, age, gender, occupation, zipcode = row.split("|")
 
-        user = User(user_id=user_id,
-                    age=age,
-                    zipcode=zipcode)
+        user = Users(user_id=user_id,
+                     age=age,
+                     zipcode=zipcode)
 
         # We need to add to the session or it won't ever be stored
         db.session.add(user)
@@ -49,7 +49,7 @@ def load_movies():
         title = title[:-7]
 
         if release_date:
-            released_at = datetime.datetime.strptime(release_date, "%d-%b-%Y")
+            released_at = datetime.strptime(release_date, "%d-%b-%Y")
         else:
             released_at = None
 
@@ -85,7 +85,7 @@ def set_val_user_id():
     """Set value for the next user_id after seeding database"""
 
     # Get the Max user_id in the database
-    result = db.session.query(func.max(User.user_id)).one()
+    result = db.session.query(func.max(Users.user_id)).one()
     max_id = int(result[0])
 
     # Set the value for the next user_id to be max_id + 1

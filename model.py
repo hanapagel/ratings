@@ -13,7 +13,7 @@ db = SQLAlchemy()
 ##############################################################################
 # Model definitions
 
-class User(db.Model):
+class Users(db.Model):
     """User of ratings website."""
     __tablename__ = "users"
 
@@ -26,7 +26,7 @@ class User(db.Model):
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<User user_id={self.user_id} email={self.email}>"
+        return f"<Users user_id={self.user_id} email={self.email}>"
 
 
 class Ratings(db.Model):
@@ -46,7 +46,7 @@ class Ratings(db.Model):
                    movie_id={self.movie_id} 
                    user_id={self.user_id} 
                    score={self.score}>"""
-                   
+
 
 class Movies(db.Model):
     """Individual movie title."""
